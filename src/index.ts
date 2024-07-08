@@ -39,3 +39,5 @@ client.on("message", (topic, message) => {
 
 // filter_with_query("date", "2023-04-20 01:00:00", "2023-04-30 01:00:00")
 // filter_with_query("action", "dining_room", null)
+
+console.log("hashmanager successfully launched")
