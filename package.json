@@ -1,0 +1,16 @@
+{
+  "name": "hashmanager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "better-sqlite3": "^11.1.2",
+    "mqtt": "^5.8.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  }
+}
