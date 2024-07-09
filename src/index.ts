@@ -38,7 +38,14 @@ client.on("message", (topic, message) => {
     } else if (target_action == "retrieve_with_filter") {
         let message_split = message.toString().split("/")
 
-        let filter_results = process_filter_query(message_split[0], parseInt(message_split[1]))
+        if (message.length == 0) {
+            console.log("Invalid Input: RETRIEVE_WITH_FILTER")
+            return
+        }
+
+        const limit = message_split.pop()!!
+
+        let filter_results = process_filter_query(message_split.join("/"), parseInt(limit))
 
         client.publish(`rne/hashmanager/${source_objective}/filtered_hash`, filter_results.map(e => e.hash).join("/"))
     } else if (target_action == "retrieve_metadata") {
