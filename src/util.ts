@@ -1,6 +1,6 @@
 import { filter_with_query, Metadata } from "./database"
 
-export function process_filter_query(input_string: string): Metadata[] {
+export function process_filter_query(input_string: string, limit: number): Metadata[] {
     let parse_split = input_string.split("/")
 
     if (parse_split.length < 2) {
@@ -19,5 +19,5 @@ export function process_filter_query(input_string: string): Metadata[] {
     let arg1 = parse_split[0]
     let arg2 = parse_split.length == 2 ? parse_split[1] : null
 
-    return filter_with_query(query_action, arg1, arg2)
+    return filter_with_query(query_action, limit, arg1, arg2)
 }

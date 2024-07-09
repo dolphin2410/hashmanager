@@ -1,3 +1,7 @@
 node_modules/
 sql/
+ipfs-storage/
+dummy/
 hash_metadata_database.db
+hash_metadata_database.db-shm
+hash_metadata_database.db-wal

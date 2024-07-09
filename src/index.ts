@@ -1,6 +1,7 @@
 import mqtt from "mqtt"
-import { add_to_database, Metadata } from "./database.ts"
-import { process_filter_query } from "./util.ts"
+import { add_to_database, Metadata, data_from_hash } from "./database"
+import { process_filter_query } from "./util"
+import { download_from_ipfs } from "./network/ipfs"
 
 const client = mqtt.connect("mqtt://localhost")
 
@@ -29,11 +30,23 @@ client.on("message", (topic, message) => {
 
         let metadata = new Metadata(hash, action, status, timestamp)
 
+        console.log(metadata)
+
+        download_from_ipfs(hash, `dummy/${hash}.txt`)
+
         add_to_database(metadata)
     } else if (target_action == "retrieve_with_filter") {
-        let filter_results = process_filter_query(message.toString())
+        let message_split = message.toString().split("/")
 
-        client.publish(`rne/hashmanager/${source_objective}/return_data`, filter_results.map(e => e.hash).join("/"))
+        let filter_results = process_filter_query(message_split[0], parseInt(message_split[1]))
+
+        client.publish(`rne/hashmanager/${source_objective}/filtered_hash`, filter_results.map(e => e.hash).join("/"))
+    } else if (target_action == "retrieve_metadata") {
+        const hash = message.toString()
+
+        const metadata = data_from_hash(hash)
+
+        client.publish(`rne/hashmanager/${source_objective}/hash_metadata`, `${metadata.action}/${metadata.status}/${metadata.timestamp}`)
     }
 })
 
