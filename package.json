@@ -8,13 +8,15 @@
     "@types/better-sqlite3": "^7.6.11",
     "better-sqlite3": "^11.1.2",
     "blockstore-fs": "^1.1.10",
+    "datastore-fs": "^9.1.8",
     "helia": "^4.2.4",
     "mqtt": "^5.8.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
   "scripts": {
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "helia_peer": "tsx src/helia_peer.ts"
   },
   "type": "module"
 }

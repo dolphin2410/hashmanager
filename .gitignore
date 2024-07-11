@@ -1,6 +1,7 @@
 node_modules/
 sql/
 ipfs-storage/
+ipfs-datastore/
 dummy/
 hash_metadata_database.db
 hash_metadata_database.db-shm

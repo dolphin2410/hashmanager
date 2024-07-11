@@ -1139,7 +1139,7 @@ cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-datastore-core@^9.2.9:
+datastore-core@^9.0.0, datastore-core@^9.2.9:
   version "9.2.9"
   resolved "https://registry.yarnpkg.com/datastore-core/-/datastore-core-9.2.9.tgz#74b4dd53d4597b59038488ba5f92a7f81769f8df"
   integrity sha512-wraWTPsbtdE7FFaVo3pwPuTB/zXsgwGGAm8BgBYwYAuzZCTS0MfXmd/HH1vR9s0/NFFjOVmBkGiWCvKxZ+QjVw==
@@ -1156,6 +1156,19 @@ datastore-core@^9.2.9:
     it-pushable "^3.2.3"
     it-sort "^3.0.4"
     it-take "^3.0.4"
+
+datastore-fs@^9.1.8:
+  version "9.1.8"
+  resolved "https://registry.yarnpkg.com/datastore-fs/-/datastore-fs-9.1.8.tgz#3af4de2d92d3be35bf0585889006035f8d6c0285"
+  integrity sha512-NM/f7/yHkgnVSiYJFPbKlEIJZ49sWz2XkvYY+Kl3bl/esQILzDt4uXUhNMRF4xfLTpQKcr+ZOfrArxVYsfnj7g==
+  dependencies:
+    datastore-core "^9.0.0"
+    fast-write-atomic "^0.2.1"
+    interface-datastore "^8.0.0"
+    interface-store "^5.0.0"
+    it-glob "^2.0.6"
+    it-map "^3.0.5"
+    it-parallel-batch "^3.0.4"
 
 debug@4.3.4:
   version "4.3.4"
