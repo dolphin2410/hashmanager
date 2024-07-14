@@ -19,13 +19,19 @@ export const createNode = async () => {
 
     console.log(helia.libp2p.getMultiaddrs())
 
-    return helia
+    const cleanup = () => {
+        helia.stop()
+        blockstore.close()
+        datastore.close()
+    }
+
+    return { helia, cleanup }
 }
 
 export async function download_from_ipfs(hash: string, target: string) {
     const { unixfs } = await import("@helia/unixfs")
 
-    const helia = await createNode()
+    const { helia, cleanup } = await createNode()
     const helia_fs = unixfs(helia)
 
     const stream = fs.createWriteStream(target)
@@ -38,5 +44,5 @@ export async function download_from_ipfs(hash: string, target: string) {
         stream.end()
     })
 
-    helia.stop()
+    cleanup()
 }
