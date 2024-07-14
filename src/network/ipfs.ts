@@ -1,11 +1,11 @@
+import { createHelia } from "helia"
+
 import { CID } from "multiformats/cid"
 import fs from "fs"
 import { FsBlockstore } from "blockstore-fs"
 import { FsDatastore } from "datastore-fs"
 
 export const createNode = async () => {
-    const { createHelia } = await import("helia")
-
     const blockstore = new FsBlockstore("./ipfs-storage/")
     const datastore = new FsDatastore("./ipfs-datastore")
 
@@ -19,10 +19,15 @@ export const createNode = async () => {
 
     console.log(helia.libp2p.getMultiaddrs())
 
-    const cleanup = () => {
-        helia.stop()
-        blockstore.close()
-        datastore.close()
+    const cleanup = async () => {
+        await blockstore.close()
+        console.log("blockstore closed")
+        await datastore.close()
+        console.log("datastore closed")
+        await helia.libp2p.stop()
+        console.log("libp2p stopped")
+        await helia.stop()
+        console.log("helia closed")
     }
 
     return { helia, cleanup }
